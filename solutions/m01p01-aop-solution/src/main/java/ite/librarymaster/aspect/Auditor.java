@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * After advice demonstration for audit purposes.
+ *
  */
 @Component
 @Aspect
@@ -22,7 +23,8 @@ public class Auditor {
                 AspectUtils.createJoinPointTraceName(joinPoint),
                 AspectUtils.getDetailedJoinPointInfo(joinPoint));
          } else {
-              LOG.info("AUDIT: Method {} executed.", AspectUtils.createJoinPointTraceName(joinPoint));
+              LOG.info("AUDIT: Method {} executed.", AspectUtils.createJoinPointTraceName(joinPoint));;
+
          }
     }
 }
