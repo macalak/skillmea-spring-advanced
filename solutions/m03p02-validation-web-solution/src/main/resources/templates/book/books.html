@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/headTag :: headTag">
+	<!-- ============================================================================ -->
+    <!-- This content is only used for static prototyping purposes (natural templates)-->
+    <!-- and is therefore entirely optional, as this markup fragment will be included -->
+    <!-- from "views/fragments/header.html" at runtime.                               -->
+    <!-- ============================================================================ -->
+	<title>Library Master</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+          rel="stylesheet" media="screen" />
+    <link href="http://cdn.jsdelivr.net/webjars/font-awesome/4.5.0/css/font-awesome.min.css"
+          th:href="@{/webjars/font-awesome/4.5.0/css/font-awesome.min.css}"
+          rel="stylesheet" media="screen"/>
+    <link href="../static/css/styles.css"
+          th:href="@{/css/styles.css}"
+          rel="stylesheet" media="screen" />
+</head>
+<body>
+    <div th:replace="fragments/header :: header"/>
+
+    <div class="container-fluid">
+        <table class="table table-stripped table-bordered">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>TITLE</th>
+                <th>AUTHOR</th>
+                <th>ISBN</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${books}">
+                <td th:text="${item.id}"/>
+                <td th:text="${item.title}"/>
+                <td th:text="${item.author}"/>
+                <td th:text="${item.isbn}"/>
+                <td><a class="btn btn-default" th:href="@{/book/__${item.id}__/edit}">Update</a>
+                    <a class="btn btn-default" th:href="@{/book/__${item.id}__}">Detail</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+    	<a class="btn btn-default" th:href="@{/book/add}">Add Book</a>
+    </div>
+    
+    <div th:replace="fragments/footer :: footer"/>
+
+</body>
+</html>
