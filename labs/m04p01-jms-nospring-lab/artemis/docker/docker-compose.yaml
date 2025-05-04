@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  artemis0:
+    image: apache/activemq-artemis:2.39.0
+    volumes:
+      - ./artemis0:/var/lib/artemis-instance/etc-override
+    environment:
+      ARTEMIS_USER: user
+      ARTEMIS_PASSWORD: password
+    ports:
+      - "8161:8161"
+      - "61616:61616"

@@ -1,0 +1,4 @@
+artemis/log
+artemis/tmp
+artemis/data
+!artemis/bin

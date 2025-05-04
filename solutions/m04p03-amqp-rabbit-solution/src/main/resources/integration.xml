@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:int-jdbc="http://www.springframework.org/schema/integration/jdbc"
+       xmlns:int-amqp="http://www.springframework.org/schema/integration/amqp"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/integration
+    http://www.springframework.org/schema/integration/spring-integration.xsd
+    http://www.springframework.org/schema/integration/amqp
+    https://www.springframework.org/schema/integration/amqp/spring-integration-amqp.xsd">
+
+
+    <!-- https://docs.spring.io/spring-integration/reference/amqp/outbound-channel-adapter.html -->
+    <int-amqp:outbound-channel-adapter id="libraryOutChannelAdapter"
+                                       channel="bookOutboundChannel"
+                                       exchange-name="book-exchange"
+                                       routing-key="book"/>
+
+    <int:channel id="bookOutboundChannel"/>
+    <!-- int:wire-tap channel="logger" pattern="bookOutboundChannel"/-->
+
+    <int-amqp:inbound-channel-adapter queue-names="book-queue"
+                                      channel="bookInboundChannel"
+                                      message-converter="jsonMessageConverter"/>
+
+    <int:channel id="bookInboundChannel"/>
+    <!--int:wire-tap channel="logger" pattern="bookInboundChannel"/-->
+
+    <!--int:logging-channel-adapter id="logger" log-full-message="true" level="INFO"/ -->
+
+    <!-- #2 Sent received data to DB -->
+    <!-- Disable the BookEventReceiver to demonstrate this functionality-->
+    <!--<int-jdbc:outbound-channel-adapter channel="bookInboundChannel"-->
+                                       <!--data-source="datasource"-->
+                                       <!--query="insert into book values(:payload.id,:payload.author,:payload.title,:payload.publisher,:payload.availability,:payload.cid,:payload.genre,:payload.isbn)"/>-->
+
+</beans>

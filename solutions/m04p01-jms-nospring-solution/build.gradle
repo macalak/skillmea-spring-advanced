@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group = 'ite'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.apache.activemq:artemis-jms-client:2.31.0'
+    implementation 'org.apache.activemq:artemis-core-client:2.31.0'
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    implementation 'ch.qos.logback:logback-core:1.4.11'
+    implementation 'ch.qos.logback:logback-classic:1.4.11'
+}
+
