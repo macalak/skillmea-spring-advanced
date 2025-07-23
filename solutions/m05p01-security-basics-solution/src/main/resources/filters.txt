@@ -1,0 +1,18 @@
+Will secure any request with [
+org.springframework.security.web.session.DisableEncodeUrlFilter@e98adb2,
+org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c3d0ff8,
+org.springframework.security.web.context.SecurityContextHolderFilter@432b883,
+org.springframework.security.web.header.HeaderWriterFilter@1a22325d,
+org.springframework.web.filter.CorsFilter@1cb73a92,
+org.springframework.security.web.csrf.CsrfFilter@4131261,
+org.springframework.security.web.authentication.logout.LogoutFilter@40dc2ade,
+org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@445c693,
+org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter@f451970,
+org.springframework.security.web.authentication.ui.DefaultLogoutPageGeneratingFilter@7d3faf1d,
+org.springframework.security.web.authentication.www.BasicAuthenticationFilter@79a92277,
+org.springframework.security.web.savedrequest.RequestCacheAwareFilter@560c3758,
+ org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@43414b88,
+ org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36017835,
+  org.springframework.security.web.access.ExceptionTranslationFilter@126e2710,
+  org.springframework.security.web.access.intercept.AuthorizationFilter@20fdaf3e]
+2025-07-12T19:04:47.741+02:00  INFO 43644 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServ

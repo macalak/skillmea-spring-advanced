@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "11743e59-2073-47c8-99da-ac49cadf5b67",
+		"name": "0401 SecurityBasics",
+		"description": "Collection of the REST API requests for the Library Master example app.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "All Books No Auth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8080/library/books"
+			},
+			"response": []
+		},
+		{
+			"name": "Hello No Auth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8080/library/books"
+			},
+			"response": []
+		},
+		{
+			"name": "All Books With  Auth",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "admin",
+						"username": "admin"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8080/library/books"
+			},
+			"response": []
+		},
+		{
+			"name": "Book by ID No Auth",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8080/books/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Book by ID With Auth",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "user",
+						"username": "user"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8080/books/1"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
