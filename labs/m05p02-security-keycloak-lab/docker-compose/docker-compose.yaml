@@ -1,0 +1,63 @@
+version: '3.7'
+services:
+  # https://poste.io/doc/getting-started#download
+  # admin@poste.local/VnJ4GLnErs
+  # keycloak@poste.local/boTuTjbd7g
+  # user@poste.local/7jCaXnneif
+  poste:
+    image: analogic/poste.io
+    hostname: poste.local
+    #network_mode: "host"   
+    ports:
+      - "9025:25"
+      - "9110:110"
+      - "9143:143"
+      - "9080:9080"
+    volumes:
+      - poste_data:/data
+    environment:
+       HTTPS: OFF
+       DISABLE_CLAMAV: TRUE
+       DISABLE_RSPAMD: TRUE
+       TZ: Europe/Bratislava
+       HTTP_PORT: 9080
+    
+  directory:
+    image: dwimberger/ldap-ad-it
+    ports:
+      - "10389:10389"
+      
+  postgres:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+    ports:
+      - "15432:5432"  
+      
+  keycloak:
+    # https://hub.docker.com/r/bitnami/keycloak/ 
+    image: docker.io/bitnami/keycloak:latest
+    environment:
+      - KEYCLOAK_DATABASE_HOST=postgres
+      - KEYCLOAK_DATABASE_NAME=keycloak
+      - KEYCLOAK_DATABASE_USER=keycloak
+      - KEYCLOAK_DATABASE_PASSWORD=password
+      # - KEYCLOAK_EXTRA_ARGS="--spi-theme-static-max-age=-1 --spi-theme-cache-themes=false --spi-theme-cache-templates=false"
+      - KEYCLOAK_CREATE_ADMIN_USER=true
+      - KEYCLOAK_ADMIN_USER=user
+      - KEYCLOAK_ADMIN_PASSWORD=bitnami
+      
+    ports:
+      - "8090:8080"
+    depends_on:
+      - postgres      
+      
+volumes:
+  postgres_data:
+    driver: local 
+  poste_data:
+    driver: local   
